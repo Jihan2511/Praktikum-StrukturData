@@ -28,7 +28,6 @@ print("isEmpty: ", isEmpty)
 print("size: ", len(stack))
 ```
 
----
 
 ## **2. Penjelasan**
 
@@ -40,7 +39,6 @@ stack = []
 
 > Baris ini membuat sebuah stack kosong. Stack disimpan dalam bentuk list karena list dapat digunakan untuk menampung data secara berurutan.
 
----
 
 ### **B) Push (Menambahkan Elemen ke Stack)**
 
@@ -58,7 +56,6 @@ print("Stack: ", stack)
 > **Output:**
 > `Stack: ['A', 'B', 'C']`
 
----
 
 ### **C) Pop (Menghapus Elemen Teratas)**
 
@@ -72,7 +69,6 @@ print("pop: ", element)
 > **Output:**
 > `Pop: C`
 
----
 
 ### **D) Peek (Melihat Elemen Teratas Tanpa Menghapus)**
 
@@ -84,7 +80,6 @@ print("peek: ", topElement)
 > *Peek* digunakan untuk melihat elemen paling atas tanpa mengubah isi stack.
 > Setelah C terhapus, elemen teratas menjadi `'B'`.
 
----
 
 ### **E) isEmpty (Mengecek Apakah Stack Kosong)**
 
@@ -100,7 +95,6 @@ print("isEmpty: ", isEmpty)
 > **Output:**
 > `isEmpty: False`
 
----
 
 ### **F) Size (Menampilkan Jumlah Elemen)**
 
@@ -114,7 +108,6 @@ print("size: ", len(stack))
 > **Output:**
 > `Size: 2`
 
----
 
 ## **3. Hasil Eksekusi**
 
@@ -126,7 +119,6 @@ isEmpty:  False
 Size:  2
 ```
 
----
 
 ## **4. Kesimpulan**
 
@@ -165,7 +157,6 @@ print("isEmpty: ", isEmpty)
 print("size: ", len(queue))
 ```
 
----
 
 ## **2. Penjelasan**
 
@@ -177,7 +168,6 @@ queue = []
 
 > Baris ini digunakan untuk membuat sebuah queue kosong. Queue disimpan dalam bentuk list karena Python dapat menampung data secara berurutan dan memudahkan penambahan elemen di belakang serta penghapusan di depan.
 
----
 
 ### **B) Enqueue (Menambahkan Elemen ke Queue)**
 
@@ -195,7 +185,6 @@ print("Queue: ", queue)
 > **Output:**
 > `Queue: ['A', 'B', 'C']`
 
----
 
 ### **C) Dequeue (Menghapus Elemen dari Depan)**
 
@@ -209,7 +198,6 @@ print("Dequeue: ", element)
 > **Output:**
 > `Dequeue: A`
 
----
 
 ### **D) Peek (Melihat Elemen Depan Tanpa Menghapus)**
 
@@ -223,7 +211,6 @@ print("peek: ", frontElement)
 > **Output:**
 > `peek: B`
 
----
 
 ### **E) isEmpty (Memeriksa Apakah Queue Kosong)**
 
@@ -237,7 +224,6 @@ print("isEmpty: ", isEmpty)
 > **Output:**
 > `isEmpty: False`
 
----
 
 ### **F) Size (Menampilkan Jumlah Elemen dalam Queue)**
 
@@ -250,7 +236,6 @@ print("size: ", len(queue))
 > **Output:**
 > `size: 2`
 
----
 
 ## **3. Hasil Eksekusi**
 
@@ -262,7 +247,6 @@ isEmpty:  False
 size:  2
 ```
 
----
 
 ## **4. Kesimpulan**
 
