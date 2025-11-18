@@ -139,5 +139,3 @@ Pada Python, queue dapat dibuat menggunakan list dengan operasi seperti:
 * melihat elemen terdepan (*peek*)
 * memeriksa kondisi kosong
 * mengetahui jumlah elemen yang tersisa
-
-!
