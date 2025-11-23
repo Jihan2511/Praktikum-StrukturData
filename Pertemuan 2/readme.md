@@ -1,4 +1,4 @@
-#  **Implementasi Linked List Python**
+#  **Implementasi Linked List Pada Python**
 
 ## **1. Kelas Node**
 
