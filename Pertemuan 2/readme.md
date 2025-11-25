@@ -1,6 +1,30 @@
-#  **Implementasi Linked List Pada Python**
+# Implementasi Linked List pada Python
 
-## **1. Kelas Node**
+
+Kode ini berisi implementasi struktur data Linked List sederhana menggunakan Python. Setiap elemen disimpan dalam sebuah node yang terdiri dari data dan penunjuk ke node berikutnya. Struktur ini memungkinkan penambahan dan penghapusan elemen secara dinamis tanpa harus menggeser keseluruhan data seperti pada array.
+
+## Fitur
+
+* Menambah data di awal list (`insert_at_first`)
+* Menambah data di akhir list (`insert_at_last`)
+* Menyisipkan data di posisi tertentu (`insert_at`)
+* Menghapus elemen pertama (`remove_first`)
+* Menghapus elemen terakhir (`remove_last`)
+* Menghapus elemen berdasarkan index (`remove_at`)
+* Menampilkan seluruh isi list (`print`)
+* Menghitung jumlah elemen (`length`)
+
+
+## Penjelasan Class pada Python
+
+### Pengertian Class
+
+Class adalah kerangka untuk membuat objek. Di dalamnya terdapat atribut yang menyimpan data dan method yang berisi perilaku. Dengan class, objek dapat dibuat berulang dengan struktur dan fungsi yang sama.
+
+
+## Penjelasan Persintaks
+
+### Class Node
 
 ```python
 class Node:
@@ -9,22 +33,11 @@ class Node:
         self.next = pointer
 ```
 
-### **Penjelasan Sintaks**
-
-* `class Node:`
-  Mendefinisikan struktur dasar sebuah node. Setiap node menyimpan data dan alamat node berikutnya.
-
-* `def __init__(self, data=None, pointer=None):`
-  Konstruktor yang dipanggil setiap kali membuat objek Node baru.
-
-* `self.data = data`
-  Menyimpan nilai yang diberikan ke node.
-
-* `self.next = pointer`
-  Menyimpan referensi menuju node berikutnya. Default-nya `None`.
+`Node` merupakan unit dasar dalam linked list.
+Bagian `data` menyimpan nilai, sedangkan `next` menunjuk ke node berikutnya.
 
 
-## **2. Kelas LinkedList**
+### Class LinkedList
 
 ```python
 class LinkedList:
@@ -32,16 +45,11 @@ class LinkedList:
         self.head = None
 ```
 
-### **Penjelasan Sintaks**
-
-* `class LinkedList:`
-  Sebuah struktur data yang terdiri dari rangkaian node.
-
-* `self.head = None`
-  Menentukan bahwa linked list dimulai dari posisi kosong, karena belum ada node pertama.
+`LinkedList` bertindak sebagai wadah utama.
+Variabel `head` menyimpan node pertama dan bernilai None ketika list masih kosong.
 
 
-## **3. insert_at_first()**
+### Fungsi `insert_at_first`
 
 ```python
 def insert_at_first(self, data):
@@ -49,16 +57,11 @@ def insert_at_first(self, data):
     self.head = node
 ```
 
-### **Penjelasan Sintaks**
-
-* `node = Node(data, self.head)`
-  Membuat node baru yang langsung menunjuk ke node yang sebelumnya menjadi head.
-
-* `self.head = node`
-  Menjadikan node baru sebagai elemen paling depan.
+Menambah elemen di awal list.
+Node baru diarahkan ke head lama, lalu head dipindahkan ke node tersebut.
 
 
-## **4. insert_at_last()**
+### Fungsi `insert_at_last`
 
 ```python
 def insert_at_last(self, data):
@@ -68,68 +71,42 @@ def insert_at_last(self, data):
         node_sekarang = self.head
         while node_sekarang.next:
             node_sekarang = node_sekarang.next
-        node_sekarang.next = Node(data)
+
+        node = Node(data)
+        node_sekarang.next = node
 ```
 
-### **Penjelasan Sintaks**
-
-* `if self.head is None:`
-  Mengecek apakah list masih kosong.
-
-* `self.head = Node(data)`
-  Jika kosong, data langsung menjadi elemen pertama.
-
-* `node_sekarang = self.head`
-  Jika tidak kosong, traversal dimulai dari head.
-
-* `while node_sekarang.next:`
-  Berulang sampai mencapai node terakhir.
-
-* `node_sekarang.next = Node(data)`
-  Menyambungkan node baru di bagian paling akhir.
+Menambah elemen di akhir.
+Jika list kosong, nilai baru langsung menjadi head.
+Jika tidak, dilakukan penelusuran hingga node terakhir sebelum menambahkan node baru.
 
 
-## **5. insert_at(index, data)**
+### Fungsi `insert_at`
 
 ```python
 def insert_at(self, index, data):
-    if index < 0 or index > self.length():
-        print("indeks tidak valid")
-        return
-    
-    if index == 0:
+    if index < 0 or index > self.length() - 1:
+        print("index tidak valid!")
+    elif index == 0:
         self.insert_at_first(data)
-        return
-    
-    urutan = 0
-    node_sekarang = self.head
-    while urutan < index - 1 and node_sekarang:
-        node_sekarang = node_sekarang.next
-        urutan += 1
+    else:
+        urutan = 0
+        node_sekarang = self.head
+        
+        while urutan < (index - 1):
+            urutan += 1
+            node_sekarang = node_sekarang.next
 
-    node_baru = Node(data, node_sekarang.next)
-    node_sekarang.next = node_baru
+        node = Node(data, node_sekarang.next)
+        node_sekarang.next = node
 ```
 
-### **Penjelasan Sintaks**
-
-* `if index < 0 or index > self.length():`
-  Menolak index yang tidak masuk akal.
-
-* `if index == 0:`
-  Jika indeks 0, proses sama seperti insert di awal.
-
-* `while urutan < index - 1:`
-  Traversal dilakukan sampai posisi tepat sebelum index yang dituju.
-
-* `node_baru = Node(data, node_sekarang.next)`
-  Node baru menunjuk ke node yang sebelumnya berada di posisi tersebut.
-
-* `node_sekarang.next = node_baru`
-  Node sebelum index kini menunjuk ke node baru.
+Menyisipkan elemen pada posisi tertentu.
+Jika index nol, prosesnya sama seperti menambah di awal.
+Jika index valid, pencarian dilakukan sampai node sebelum posisi yang ditentukan, lalu node baru ditempatkan di tengah.
 
 
-## **6. remove_first()**
+### Fungsi `remove_first`
 
 ```python
 def remove_first(self):
@@ -139,142 +116,131 @@ def remove_first(self):
         self.head = self.head.next
 ```
 
-### **Penjelasan Sintaks**
-
-* `self.head = self.head.next`
-  Head lama dilewati, sehingga elemen pertama terhapus secara otomatis.
+Menghapus elemen pertama dengan memindahkan head ke node berikutnya.
 
 
-## **7. remove_last()**
+### Fungsi `remove_last`
 
 ```python
 def remove_last(self):
     if self.head is None:
         print("tidak ada data yang bisa dihapus")
-        return
-    
-    if self.head.next is None:
+    elif self.head.next is None:
         self.head = None
-        return
+    else:
+        node_sebelumnya = None
+        node_sekarang = self.head
 
-    node_sekarang = self.head
-    
-    while node_sekarang.next.next:
-        node_sekarang = node_sekarang.next
-    
-    node_sekarang.next = None
+        while node_sekarang.next:
+            node_sebelumnya = node_sekarang
+            node_sekarang = node_sekarang.next
+
+        node_sebelumnya.next = None
 ```
 
-### **Penjelasan Sintaks**
-
-* `if self.head.next is None:`
-  Kasus khusus: hanya satu data → langsung hapus.
-
-* `while node_sekarang.next.next:`
-  Berhenti di node sebelum node terakhir.
-
-* `node_sekarang.next = None`
-  Node terakhir dilepas dari rantai.
+Jika hanya ada satu elemen, head langsung dikosongkan.
+Jika lebih dari satu, penelusuran dilakukan sampai node terakhir, lalu koneksi ke node sebelumnya diputus.
 
 
-## **8. remove_at(index)**
+### Fungsi `remove_at`
 
 ```python
 def remove_at(self, index):
     if index < 0 or index >= self.length():
-        print("index invalid")
-        return
-    
-    if index == 0:
+        print("index invalid!")
+    elif index == 0:
         self.remove_first()
-        return
-    
-    urutan = 0
-    node_sekarang = self.head
-    
-    while urutan < index - 1:
-        node_sekarang = node_sekarang.next
-        urutan += 1
-    
-    if node_sekarang.next:
+    else:
+        urutan = 0
+        node_sekarang = self.head
+
+        while urutan < index - 1:
+            node_sekarang = node_sekarang.next
+            urutan += 1
+
         node_sekarang.next = node_sekarang.next.next
 ```
 
-### **Penjelasan Sintaks**
-
-* Validasi batas indeks.
-
-* Jika index = 0 → hapus elemen pertama.
-
-* Traversal hingga node sebelum index.
-
-* `node_sekarang.next = node_sekarang.next.next`
-  Node pada index dilewati sehingga terhapus.
+Menghapus elemen berdasarkan index tertentu.
+Untuk index nol, sama seperti menghapus elemen pertama.
+Jika index valid, pointer node sebelumnya diarahkan ke node sesudah node yang dihapus.
 
 
-## **9. print()**
+### Fungsi `print`
 
 ```python
 def print(self):
     if self.head is None:
         print("data kosong")
     else:
-        hasil = ""
-        node = self.head
-        while node:
-            hasil += str(node.data) + " → "
-            node = node.next
-        print(hasil)
+        text_print = ''
+        node_sekarang = self.head
+
+        while node_sekarang:
+            text_print += str(node_sekarang.data) + " -> "
+            node_sekarang = node_sekarang.next
+
+        print(text_print)
 ```
 
-### **Penjelasan Sintaks**
+Menampilkan isi linked list dari awal hingga akhir.
+Jika kosong, muncul pesan bahwa tidak ada data.
 
-* Traversal dari head.
-* Setiap data ditambahkan ke string.
-* Ditampilkan dalam satu baris.
 
----
-
-## **10. length()**
+### Fungsi `length`
 
 ```python
 def length(self):
-    count = 0
-    node = self.head
-    while node:
-        count += 1
-        node = node.next
-    return count
+    urutan = 0
+    data_sekarang = self.head
+
+    while data_sekarang:
+        data_sekarang = data_sekarang.next
+        urutan += 1
+    return urutan
 ```
 
-### **Penjelasan Sintaks**
-
-* Menghitung jumlah node dengan melakukan traversal sampai habis.
+Menghitung jumlah elemen dengan menelusuri node satu per satu dari head.
 
 
-## **11. Bagian Pengujian Program**
+## Eksekusi Program
 
 ```python
-ll = LinkedList()
+LL = LinkedList()
 
-ll.insert_at_first("jeruk")
-ll.insert_at_first("mangga")
-ll.insert_at_first("manggis")
-ll.insert_at_last("apel")
-ll.insert_at(2, "anggur")
+# insert
+LL.insert_at_first("jeruk")
+LL.insert_at_first("mangga")
+LL.insert_at_first("manggis")
+LL.insert_at_last("apel")
+LL.insert_at(2, "anggur")
 
-ll.remove_first()
-ll.remove_last()
-ll.remove_at(1)
-ll.remove_at(1)
+# remove
+LL.remove_first()
+LL.remove_last()
+LL.remove_at(1)
+LL.remove_at(1)
 
-ll.print()
-print(ll.length())
+LL.print()
+print(LL.length())
 ```
 
-### **Penjelasan Sintaks**
 
-* Membuat objek LinkedList.
-* Melakukan beberapa operasi insert dan delete.
-* Bagian akhir menampilkan isi list dan jumlah elemen.
+## Alur Proses
+
+1. Linked list dibuat dalam keadaan kosong.
+2. Data dimasukkan menggunakan fungsi insert, dengan beberapa ditempatkan di depan, di belakang, dan pada posisi tertentu.
+3. Operasi penghapusan dilakukan untuk menghapus elemen pertama, terakhir, serta elemen pada index tertentu.
+4. Setelah seluruh operasi, hanya satu elemen yang tersisa dalam list.
+
+
+## Output Program
+
+```
+mangga -> 
+1
+```
+
+Baris pertama merupakan hasil dari fungsi `print()`
+Baris kedua adalah jumlah elemen yang dihitung melalui fungsi `length()`.
 
